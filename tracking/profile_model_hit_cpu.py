@@ -23,7 +23,7 @@ def parse_args():
     # for train
     parser.add_argument('--script', type=str, default='HiT',
                         help='training script name')
-    parser.add_argument('--config', type=str, default='HiT_Tiny', help='yaml configure file name')
+    parser.add_argument('--config', type=str, default='HiT_Base', help='yaml configure file name')
     args = parser.parse_args()
 
     return args
@@ -82,6 +82,7 @@ def evaluate(model, images_list, xz, run_box_head, run_cls_head, bs):
         end = time.time()
         avg_lat = (end - start) / (T_t * bs)
         print("The average overall latency is %.2f ms" % (avg_lat * 1000))
+        print("FPS is %.2f fps" % (1. / avg_lat))
 
 
 
